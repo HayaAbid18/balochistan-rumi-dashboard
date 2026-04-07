@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python -c \"print\\(''hello''\\)\")",
+      "Bash(python3.11 -c \"print\\(''hello''\\)\")",
+      "Bash(python -m pip install matplotlib pandas sqlalchemy psycopg2-binary seaborn -q)"
+    ]
+  }
+}

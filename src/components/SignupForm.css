@@ -1,0 +1,138 @@
+.signup-card {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+  padding: 40px 36px;
+  width: 100%;
+  max-width: 440px;
+}
+
+.signup-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 6px;
+}
+
+.signup-subtitle {
+  font-size: 0.95rem;
+  color: #6b7280;
+  margin-bottom: 28px;
+}
+
+/* Fields */
+.field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 18px;
+}
+
+.field-group label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151;
+}
+
+.field-group input {
+  border: 1.5px solid #d1d5db;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 0.95rem;
+  color: #111827;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.field-group input:focus {
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+}
+
+.field-group input.input-error {
+  border-color: #ef4444;
+}
+
+.field-group input.input-error:focus {
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15);
+}
+
+.error-msg {
+  font-size: 0.8rem;
+  color: #ef4444;
+}
+
+/* Buttons */
+.btn-primary {
+  background: #6366f1;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 11px 20px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+}
+
+.btn-primary:hover {
+  background: #4f46e5;
+}
+
+.btn-primary:active {
+  transform: scale(0.98);
+}
+
+.btn-full {
+  width: 100%;
+  margin-top: 6px;
+}
+
+/* Login link */
+.login-link {
+  text-align: center;
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin-top: 20px;
+}
+
+.login-link a {
+  color: #6366f1;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.login-link a:hover {
+  text-decoration: underline;
+}
+
+/* Success state */
+.success-card {
+  text-align: center;
+  padding: 48px 36px;
+}
+
+.success-icon {
+  width: 60px;
+  height: 60px;
+  background: #d1fae5;
+  color: #059669;
+  border-radius: 50%;
+  font-size: 1.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+}
+
+.success-card h2 {
+  font-size: 1.5rem;
+  color: #111827;
+  margin-bottom: 10px;
+}
+
+.success-card p {
+  color: #6b7280;
+  margin-bottom: 28px;
+  line-height: 1.5;
+}
