@@ -66,3 +66,515 @@ textarea {
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
+
+/* Balochistan Dashboard Styles */
+.dashboard {
+  padding: 20px;
+  background: #f3f4f6;
+  min-height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+}
+
+.dashboard.error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading-container,
+.error-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  background: white;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.spinner {
+  border: 4px solid #e5e7eb;
+  border-top: 4px solid #667eea;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin-bottom: 20px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.error-container p {
+  color: #dc2626;
+  margin: 15px 0;
+  font-size: 16px;
+}
+
+.error-container button {
+  background: #667eea;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-top: 15px;
+}
+
+.error-container button:hover {
+  background: #764ba2;
+}
+
+.dashboard-header {
+  text-align: center;
+  color: white;
+  margin-bottom: 40px;
+  padding: 30px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-header h1 {
+  margin: 0 0 8px 0;
+  font-size: 36px;
+  font-weight: 700;
+}
+
+.dashboard-header .subtitle {
+  margin: 0 0 15px 0;
+  font-size: 16px;
+  opacity: 0.95;
+}
+
+.header-meta {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 15px;
+}
+
+.metric-badge {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.last-update {
+  font-size: 13px;
+  opacity: 0.9;
+}
+
+.metrics-section {
+  margin-bottom: 30px;
+}
+
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.metric-card {
+  background: white;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border-top: 4px solid;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.metric-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.metric-card h3 {
+  margin: 0 0 12px 0;
+  font-size: 12px;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+}
+
+.metric-card .metric-value {
+  font-size: 42px;
+  font-weight: 700;
+  margin: 10px 0;
+  color: #111827;
+}
+
+.metric-card .metric-unit {
+  font-size: 13px;
+  color: #9ca3af;
+  margin-top: 8px;
+  line-height: 1.4;
+}
+
+.charts-section {
+  margin-bottom: 30px;
+}
+
+.chart-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 20px;
+}
+
+.chart-box {
+  background: white;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.chart-box h2 {
+  margin: 0 0 20px 0;
+  color: #111827;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.chart-box canvas {
+  max-height: 300px;
+}
+
+.section {
+  background: white;
+  padding: 24px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.section h2 {
+  margin: 0 0 20px 0;
+  color: #111827;
+  font-size: 20px;
+  font-weight: 600;
+  border-bottom: 2px solid #e5e7eb;
+  padding-bottom: 12px;
+}
+
+.funnel {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.funnel-step {
+  display: flex;
+  align-items: center;
+}
+
+.funnel-bar {
+  background: linear-gradient(90deg, #667eea, #764ba2);
+  padding: 16px 20px;
+  border-radius: 8px;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-width: 200px;
+  transition: all 0.3s ease;
+}
+
+.funnel-bar:hover {
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.funnel-label {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.funnel-count {
+  font-size: 13px;
+  opacity: 0.95;
+  font-weight: 500;
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
+}
+
+.feature-card {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  border: 2px solid #e5e7eb;
+  transition: all 0.2s;
+}
+
+.feature-card:hover {
+  border-color: #667eea;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
+}
+
+.feature-icon {
+  font-size: 32px;
+  margin-bottom: 12px;
+  display: block;
+}
+
+.feature-label {
+  font-size: 12px;
+  color: #6b7280;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.feature-value {
+  font-size: 32px;
+  font-weight: 700;
+  color: #667eea;
+}
+
+.users-table-container {
+  overflow-x: auto;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.users-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.users-table thead {
+  background: #667eea;
+  color: white;
+}
+
+.users-table th {
+  padding: 14px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.users-table td {
+  padding: 14px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.users-table tbody tr {
+  transition: background-color 0.2s;
+}
+
+.users-table tbody tr:hover {
+  background: #f9fafb;
+}
+
+.users-table tr.status-highly-active {
+  background: #ecfdf5;
+}
+
+.users-table tr.status-highly-active:hover {
+  background: #d1fae5;
+}
+
+.users-table tr.status-recently-active {
+  background: #fffbeb;
+}
+
+.users-table tr.status-recently-active:hover {
+  background: #fef3c7;
+}
+
+.users-table tr.status-moderately-active {
+  background: #eff6ff;
+}
+
+.users-table tr.status-moderately-active:hover {
+  background: #dbeafe;
+}
+
+.users-table tr.status-dormant {
+  background: #fef2f2;
+}
+
+.users-table tr.status-dormant:hover {
+  background: #fee2e2;
+}
+
+.users-table .rank {
+  font-weight: 700;
+  color: #667eea;
+}
+
+.users-table .name {
+  font-weight: 600;
+  color: #111827;
+}
+
+.users-table .phone {
+  font-family: 'Courier New', monospace;
+  color: #6b7280;
+  font-size: 12px;
+}
+
+.users-table .messages {
+  color: #667eea;
+  font-weight: 600;
+}
+
+.users-table .features {
+  color: #6b7280;
+}
+
+.users-table .last-active {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.users-table .last-active small {
+  display: block;
+  color: #9ca3af;
+  font-size: 11px;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.status-badge.status-highly-active {
+  background: #10b981;
+  color: white;
+}
+
+.status-badge.status-recently-active {
+  background: #f59e0b;
+  color: white;
+}
+
+.status-badge.status-moderately-active {
+  background: #3b82f6;
+  color: white;
+}
+
+.status-badge.status-dormant {
+  background: #ef4444;
+  color: white;
+}
+
+.dashboard-footer {
+  text-align: center;
+  color: #6b7280;
+  padding: 24px;
+  margin-top: 40px;
+  font-size: 13px;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .chart-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard {
+    padding: 16px;
+  }
+
+  .dashboard-header {
+    padding: 24px;
+  }
+
+  .dashboard-header h1 {
+    font-size: 28px;
+  }
+
+  .header-meta {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .metrics-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .feature-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .users-table {
+    font-size: 12px;
+  }
+
+  .users-table th,
+  .users-table td {
+    padding: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboard {
+    padding: 12px;
+  }
+
+  .dashboard-header {
+    padding: 20px;
+  }
+
+  .dashboard-header h1 {
+    font-size: 24px;
+  }
+
+  .metrics-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .feature-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .feature-card {
+    padding: 16px;
+  }
+
+  .section {
+    padding: 16px;
+    margin-bottom: 16px;
+  }
+
+  .users-table {
+    font-size: 11px;
+  }
+
+  .users-table th,
+  .users-table td {
+    padding: 8px;
+  }
+
+  .funnel-bar {
+    padding: 12px 16px;
+  }
+}
