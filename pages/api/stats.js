@@ -6,8 +6,14 @@ const pool = new Pool({
   database: process.env.DB_NAME,
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
-  ssl: { rejectUnauthorized: false }
+  ssl: { rejectUnauthorized: false },
+  max: 2, // Limit pool size to reduce connection overhead
 });
+
+// In-memory cache to reduce database queries
+let cachedStats = null;
+let cacheTime = 0;
+const CACHE_DURATION = 5 * 60 * 1000; // Cache for 5 minutes
 
 // Filtered cohort: Teachers from the official March 17th cohort list
 // Excludes internal/test users:
@@ -36,6 +42,16 @@ const COHORT_PHONES = [
 export default async function handler(req, res) {
   if (req.method !== 'GET') {
     return res.status(405).json({ error: 'Method not allowed' });
+  }
+
+  // Check if cache is still valid
+  const now = Date.now();
+  if (cachedStats && (now - cacheTime) < CACHE_DURATION) {
+    return res.status(200).json({
+      ...cachedStats,
+      cached: true,
+      cacheAge: Math.floor((now - cacheTime) / 1000) + 's'
+    });
   }
 
   let client;
@@ -131,13 +147,19 @@ export default async function handler(req, res) {
       totalImages: stats.reduce((sum, s) => sum + s.imageAnalyses, 0)
     };
 
-    res.status(200).json({
+    const responseData = {
       timestamp: new Date().toISOString(),
       breakdown,
       funnel,
       aggregateFeatures,
       userStats: stats
-    });
+    };
+
+    // Cache the results
+    cachedStats = responseData;
+    cacheTime = Date.now();
+
+    res.status(200).json(responseData);
   } catch (error) {
     console.error('Error fetching stats:', error);
     res.status(500).json({
