@@ -1,19 +1,23 @@
-import { Pool } from 'pg';
-
-const pool = new Pool({
-  host: process.env.DB_HOST,
-  port: parseInt(process.env.DB_PORT || '5432'),
-  database: process.env.DB_NAME,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  ssl: { rejectUnauthorized: false },
-  max: 2, // Limit pool size to reduce connection overhead
-});
+import { Client } from 'pg';
 
 // In-memory cache to reduce database queries
 let cachedStats = null;
 let cacheTime = 0;
 const CACHE_DURATION = 5 * 60 * 1000; // Cache for 5 minutes
+
+// Create a single persistent connection
+async function getConnection() {
+  const client = new Client({
+    host: process.env.DB_HOST,
+    port: parseInt(process.env.DB_PORT || '5432'),
+    database: process.env.DB_NAME,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    ssl: { rejectUnauthorized: false }
+  });
+  await client.connect();
+  return client;
+}
 
 // Filtered cohort: Teachers from the official March 17th cohort list
 // Excludes internal/test users:
@@ -56,8 +60,8 @@ export default async function handler(req, res) {
 
   let client;
   try {
-    // Get a client from the pool
-    client = await pool.connect();
+    // Create a new connection
+    client = await getConnection();
 
     const phonePlaceholders = COHORT_PHONES.map((_, i) => `$${i + 1}`).join(',');
 
@@ -167,9 +171,9 @@ export default async function handler(req, res) {
       message: error.message
     });
   } finally {
-    // Always release the client back to the pool
+    // Always close the connection
     if (client) {
-      client.release();
+      await client.end();
     }
   }
 }
