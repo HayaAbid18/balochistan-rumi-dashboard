@@ -38,7 +38,11 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
+  let client;
   try {
+    // Get a client from the pool
+    client = await pool.connect();
+
     const phonePlaceholders = COHORT_PHONES.map((_, i) => `$${i + 1}`).join(',');
 
     const query = `
@@ -65,7 +69,7 @@ export default async function handler(req, res) {
       ORDER BY messages DESC
     `;
 
-    const result = await pool.query(query, COHORT_PHONES);
+    const result = await client.query(query, COHORT_PHONES);
 
     // Calculate engagement levels
     const now = new Date();
@@ -140,5 +144,10 @@ export default async function handler(req, res) {
       error: 'Failed to fetch engagement stats',
       message: error.message
     });
+  } finally {
+    // Always release the client back to the pool
+    if (client) {
+      client.release();
+    }
   }
 }
