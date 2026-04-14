@@ -12,11 +12,14 @@ app.use(express.json());
 // Database connection
 const pool = new Pool({
   host: 'aws-1-ap-southeast-1.pooler.supabase.com',
-  port: 5432,
+  port: 6543,
   database: 'postgres',
   user: 'analyst.jlpenspfdcwxkopaidys',
   password: 'RumiAnalyst2026secure',
-  ssl: { rejectUnauthorized: false }
+  ssl: { rejectUnauthorized: false },
+  max: 3,
+  idleTimeoutMillis: 30000,
+  connectionTimeoutMillis: 10000
 });
 
 // Balochistan cohort phones (37 teachers - March 17-20)
